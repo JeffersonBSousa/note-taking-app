@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     loadNotes();
 });
 
@@ -7,7 +7,7 @@ function loadNotes() {
     const notesContainer = document.getElementById('notes-container');
     notesContainer.innerHTML = '';
 
-    notes.forEach(function(note) {
+    notes.forEach(function (note) {
         const noteDiv = document.createElement('div');
         noteDiv.classList.add('note');
 
@@ -19,13 +19,13 @@ function loadNotes() {
 
         const editButton = document.createElement('button');
         editButton.textContent = 'Editar';
-        editButton.onclick = function() {
+        editButton.onclick = function () {
             editNote(note.date);
         };
 
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Excluir';
-        deleteButton.onclick = function() {
+        deleteButton.onclick = function () {
             deleteNoteConfirmation(note.date);
         };
 
@@ -59,7 +59,7 @@ function editNote(date) {
     const newText = prompt('Digite o novo texto para a nota:');
     if (newText !== null) {
         const notes = JSON.parse(localStorage.getItem('notes'));
-        const updatedNotes = notes.map(function(note) {
+        const updatedNotes = notes.map(function (note) {
             if (note.date === date) {
                 return {
                     text: newText,
@@ -82,7 +82,7 @@ function deleteNoteConfirmation(date) {
 
 function deleteNote(date) {
     const notes = JSON.parse(localStorage.getItem('notes'));
-    const updatedNotes = notes.filter(function(note) {
+    const updatedNotes = notes.filter(function (note) {
         return note.date !== date;
     });
     localStorage.setItem('notes', JSON.stringify(updatedNotes));
